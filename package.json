@@ -1,0 +1,13 @@
+{
+  "name": "nodejs-contact-management",
+  "version": "1.0.0",
+  "description": "Contact Management",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Annas Nurdin",
+  "license": "ISC",
+  "type": "module"
+  
+}
