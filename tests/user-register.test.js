@@ -1,15 +1,11 @@
 import supertest from "supertest"
-import { prismaClient } from "../src/application/database.js"
 import { web } from "../src/application/web.js"
 import { logger } from "../src/application/logging.js"
+import { removeTestUser } from "./test-util.js"
 
 describe('POST /api/users', function () {
     afterEach(async () => {
-        await prismaClient.user.deleteMany({
-            where: {
-                username: "annas"
-            }
-        })
+        await removeTestUser()
     })
     it('should can register user', async () => {
         const result = await supertest(web)
