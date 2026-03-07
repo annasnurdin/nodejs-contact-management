@@ -20,7 +20,7 @@ const register = async (request) => {
 
     user.password = await bcrypt.hash(user.password, 10)
 
-    return prismaClient.user.create({
+    return prismaClient.user.create({ // <-- tidak pakai await, di naikkan ke user-controller
         data: user, // disini user : username, pass, name dimasukkan database
         select: {
             username: true,
@@ -55,7 +55,7 @@ const login = async (request) => {
 
     const token = uuid().toString()
 
-    return await prismaClient.user.update({
+    return prismaClient.user.update({ // <-- ini tidak pakai await karena catch error nya di user-controller
         data: { 
             token: token
         },

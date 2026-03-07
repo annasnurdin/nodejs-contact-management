@@ -15,10 +15,23 @@ const login = async (req, res, next) => {
     try {
         const result = await userService.login(req.body)
         res.status(200).json({
-            data: result
+            data: result // hasil return dari userService.login
         })
     } catch (e) {
-        next(e)
+        next(e) // ini menangkap dari error Promise return hasil userService.login
+        
+        /*
+            Promise bisa di try catch, tapi pakai await dulu: 
+            try {
+                return await prismaClient.user.update({ <-- ini di await dulu, kalau ada error bisa di catch langsung
+                    data: { token: token },
+                    where: { username: user.username },
+                    select: { token: true }
+                })
+            } catch (error) {
+                throw new ResponseError(500, "Failed to update user token")
+            }
+        */
     }
 }
 
