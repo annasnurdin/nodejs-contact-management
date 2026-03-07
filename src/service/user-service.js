@@ -20,10 +20,10 @@ const register = async (request) => {
     user.password = await bcrypt.hash(user.password, 10)
 
     return prismaClient.user.create({
-        data: user,
+        data: user, // disini user : username, pass, name dimasukkan database
         select: {
             username: true,
-            name: true
+            name: true // response body nya dkembalikan
         }
 
     })
